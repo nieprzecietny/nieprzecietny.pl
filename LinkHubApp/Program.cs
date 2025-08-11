@@ -3,12 +3,14 @@ using LinkHubApp.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System;
+using MatBlazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddMatBlazor();
 builder.Services.AddScoped(sp =>
 {
     var navigation = sp.GetRequiredService<NavigationManager>();

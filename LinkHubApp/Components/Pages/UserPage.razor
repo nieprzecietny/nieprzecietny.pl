@@ -15,20 +15,18 @@ else
         <div class="social">
             @foreach (var s in linkPage.SocialLinks)
             {
-                <a href="@s.Url" target="_blank" rel="noopener">
-                    <span class="material-icons">@s.Icon</span>
+                <MatIconButton Icon="@s.Icon" Link="@s.Url" Target="_blank" Class="social-button">
                     @s.Text
-                </a>
+                </MatIconButton>
             }
         </div>
     </div>
     <div class="links">
         @foreach (var l in linkPage.Links)
         {
-            <a class="link-item" href="@l.Url" target="_blank" rel="noopener">
-                <span class="material-icons">@l.Icon</span>
-                @l.Text
-            </a>
+            <MatAnchorLink href="@l.Url" target="_blank" class="link-item">
+                <MatButton Icon="@l.Icon" Label="@l.Text" Class="link-button" />
+            </MatAnchorLink>
         }
     </div>
     <footer>@linkPage.FooterText</footer>

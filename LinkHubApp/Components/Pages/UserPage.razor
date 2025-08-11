@@ -44,7 +44,7 @@ else
         {
             try
             {
-                linkPage = await Http.GetFromJsonAsync<LinkPage>($"/api/pages/{Name}");
+                linkPage = await Http.GetFromJsonAsync<LinkPage>($"api/pages/{Name}");
             }
             catch
             {

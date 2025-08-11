@@ -1,0 +1,55 @@
+@page "/{name}"
+
+@inject HttpClient Http
+
+@if (linkPage is null)
+{
+    <p>Page not found.</p>
+}
+else
+{
+    <div class="banner" style="background-image:url(@linkPage.BannerUrl);"></div>
+    <div class="profile">
+        <img class="avatar" src="@linkPage.AvatarUrl" alt="avatar" />
+        <h1>@linkPage.Title</h1>
+        <div class="social">
+            @foreach (var s in linkPage.SocialLinks)
+            {
+                <a href="@s.Url" target="_blank" rel="noopener">
+                    <span class="material-icons">@s.Icon</span>
+                    @s.Text
+                </a>
+            }
+        </div>
+    </div>
+    <div class="links">
+        @foreach (var l in linkPage.Links)
+        {
+            <a class="link-item" href="@l.Url" target="_blank" rel="noopener">
+                <span class="material-icons">@l.Icon</span>
+                @l.Text
+            </a>
+        }
+    </div>
+    <footer>@linkPage.FooterText</footer>
+}
+
+@code {
+    [Parameter] public string? Name { get; set; }
+    LinkPage? linkPage;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(Name))
+        {
+            try
+            {
+                linkPage = await Http.GetFromJsonAsync<LinkPage>($"/api/pages/{Name}");
+            }
+            catch
+            {
+                linkPage = null;
+            }
+        }
+    }
+}

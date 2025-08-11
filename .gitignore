@@ -1,0 +1,5 @@
+bin/
+obj/
+*.map
+LinkHubApp/wwwroot/bootstrap/
+LinkHubApp/wwwroot/favicon.png
